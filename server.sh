@@ -1,6 +1,4 @@
 #!/bin/sh
 
-rm /mnt/us/extensions/filebrowser/log.txt
-touch /mnt/us/extensions/filebrowser/log.txt
-
-(/mnt/us/extensions/filebrowser/fileserver -a 0.0.0.0 -p 80 -r "/mnt/us" -l "/mnt/us/extensions/filebrowser/log.txt" 1> /dev/null 2> /dev/null)&
+source /mnt/us/extensions/filebrowser/common.sh
+(/mnt/us/extensions/filebrowser/fileserver --noauth -a 0.0.0.0 -p $serverport -r "/mnt/us" 1> /dev/null 2> /dev/null)&
