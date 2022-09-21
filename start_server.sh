@@ -16,8 +16,12 @@ chmod a+x /mnt/us/extensions/filebrowser/server.sh
 
 #check if fileserver is running
 if pgrep fileserver >/dev/null 2>&1; then
-  /usr/sbin/eips 11 33 "HTTP Server started"
-  /usr/sbin/eips 11 32 "Visit: http://${myip}:${serverport}"
+  /usr/sbin/eips 11 32 "HTTP Server started"
+  if [ -z $myip ]; then
+    /usr/sbin/eips 11 33 "No Wifi connection detected"
+  else
+    /usr/sbin/eips 11 33 "Visit: http://${myip}:${serverport}"
+  fi
 else
-  /usr/sbin/eips 11 33 "HTTP Server failed to start"
+  /usr/sbin/eips 11 32 "HTTP Server failed to start"
 fi
